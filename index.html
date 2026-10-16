@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Zegarek</title>
+<style>
+  :root { --bg:#0f1a20; --ink:#e8f4f8; --dim:#7fa3b0; --acc:#3cc4d6; }
+  html,body { margin:0; height:100%; background:var(--bg); color:var(--ink); font-family: system-ui, Arial, sans-serif; }
+  body { display:flex; flex-direction:column; align-items:center; justify-content:center; gap:14px; }
+  #czas { font: 700 clamp(64px, 18vw, 220px)/1 ui-monospace, Consolas, monospace; letter-spacing:2px; }
+  #czas span { color:var(--acc); }
+  #sek { font-size:.4em; color:var(--dim); }
+  #data { font-size:clamp(18px, 4vw, 40px); color:var(--dim); text-transform:capitalize; }
+  footer { position:fixed; bottom:12px; font-size:13px; color:#4d6874; }
+</style>
+</head>
+<body>
+  <div id="czas">--<span>:</span>--<span id="sek"></span></div>
+  <div id="data"></div>
+  <footer>Mój pierwszy program na GitHub Pages</footer>
+<script>
+  const dwa = n => String(n).padStart(2, '0');
+  function tick() {
+    const d = new Date();
+    document.getElementById('czas').innerHTML = dwa(d.getHours()) + '<span>:</span>' + dwa(d.getMinutes()) + '<span id="sek"> ' + dwa(d.getSeconds()) + '</span>';
+    document.getElementById('data').textContent = d.toLocaleDateString('pl-PL', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+  }
+  tick(); setInterval(tick, 1000);
+</script>
+</body>
+</html>
